@@ -60,7 +60,7 @@ function HomePageHandler(state) {
 }
 
 function AboutPageHandler(state) {
-  const path = window.location.pathname.includes("travelRecommendation")
+  const path = window.location.toString().includes('github')
     ? "travelRecommendation/"
     : "";
   document.getElementById(
@@ -163,7 +163,7 @@ const availablePages = {
 /** get initial tarvel details */
 const getTravelDetails = async () => {
   try {
-    const path = window.location.pathname.includes("travelRecommendation")
+    const path = window.location.toString().includes('github')
       ? "travelRecommendation"
       : "";
     const response = await fetch(path + RECOMMEDDATION_API);
@@ -220,7 +220,7 @@ const filterTravelDetails = (filterQuery) => {
 const filterContentRenderer = (details) => {
   const filterResponse = filterTravelDetails(details);
   const result = document.getElementById("result");
-  const path = window.location.pathname.includes("travelRecommendation")
+  const path = window.location.toString().includes('github')
     ? "travelRecommendation/"
     : "";
   if (filterResponse.length && result) {

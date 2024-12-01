@@ -165,7 +165,8 @@ const availablePages = {
 /** get initial tarvel details */
 const getTravelDetails = async () => {
   try {
-    const response = await fetch(RECOMMEDDATION_API);
+     const path = window.location.pathname.includes('travelRecommendation') ? 'travelRecommendation/': ''
+    const response = await fetch(path+RECOMMEDDATION_API);
     if (response) {
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);

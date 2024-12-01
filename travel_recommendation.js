@@ -1,70 +1,71 @@
-const RECOMMEDDATION_API =
-  "/travel_recommendation_api.json";
+const RECOMMEDDATION_API = "/travel_recommendation_api.json";
 
 let travleDetails = {};
 
 class Router {
-    constructor() {
-      this.routes = [];
-      this.currentRoute = null;
-      this.state = {};
-      window.addEventListener("popstate", (event) => this.onPopState(event));
-    }
-  
-    addRoute(path, handler) {
-      this.routes.push({ path, handler });
-    }
-  
-    navigate(path, state = {}) {
-      window.history.pushState(state, "", path);
-      this.state = state;
-      this.handleRoute(path);
-    }
-  
-    handleRoute(path) {
-      const route = this.routes.find((route) => route.path === path);
-      if (route) {
-        this.renderComponent(route.handler);
-        this.currentRoute = route;
-      } else {
-        this.handleNotFound();
-      }
-    }
-  
-    renderComponent(handler) {
-      handler(this.state);
-    }
-  
-    onPopState(event) {
-      const currentPath = window.location.pathname;
-      this.handleRoute(currentPath);
-    }
-  
-    handleNotFound() {
-      document.getElementById(
-        "app"
-      ).innerHTML = `<h1>NOT FOUND PAGE Page</h1><p>State: ${JSON.stringify(
-        state
-      )}</p>`;
+  constructor() {
+    this.routes = [];
+    this.currentRoute = null;
+    this.state = {};
+    window.addEventListener("popstate", (event) => this.onPopState(event));
+  }
+
+  addRoute(path, handler) {
+    this.routes.push({ path, handler });
+  }
+
+  navigate(path, state = {}) {
+    window.history.pushState(state, "", path);
+    this.state = state;
+    this.handleRoute(path);
+  }
+
+  handleRoute(path) {
+    const route = this.routes.find((route) => route.path === path);
+    if (route) {
+      this.renderComponent(route.handler);
+      this.currentRoute = route;
+    } else {
+      this.handleNotFound();
     }
   }
-  
-  // Example component handler:
-  function HomePageHandler(state) {
-    document.getElementById("app").innerHTML = `<div class='overview'> 
+
+  renderComponent(handler) {
+    handler(this.state);
+  }
+
+  onPopState(event) {
+    const currentPath = window.location.pathname;
+    this.handleRoute(currentPath);
+  }
+
+  handleNotFound() {
+    document.getElementById(
+      "app"
+    ).innerHTML = `<h1>NOT FOUND PAGE Page</h1><p>State: ${JSON.stringify(
+      state
+    )}</p>`;
+  }
+}
+
+// Example component handler:
+function HomePageHandler(state) {
+  document.getElementById("app").innerHTML = `<div class='overview'> 
       <h3>Expolre Dream Destination </h3>
       <span>
   A dream destination is a serene paradise offering breathtaking landscapes, vibrant cultures, luxurious resorts, and unforgettable experiences. It's where adventure meets relaxation and memories are made.</span>
       <button> Book now </button>
       </div>
       <div id="result"></div>`;
-  }
-  
-  function AboutPageHandler(state) {
-       const path = window.location.pathname.includes('travelRecommendation') ? 'travelRecommendation/': ''
-    document.getElementById(
-      "app"
-    ).innerHTML = `<div class='aboutpage'><h1>About Page</h1> <section class="company-desc">
+}
+
+function AboutPageHandler(state) {
+  const path = window.location.pathname.includes("travelRecommendation")
+    ? "travelRecommendation/"
+    : "";
+  document.getElementById(
+    "app"
+  ).innerHTML = `<div class='aboutpage'><h1>About Page</h1> <section class="company-desc">
         <h2>Welcome to Our Travel Booking Company</h2>
         <p>
           We are a leading platform for booking vacations, travel packages, and flights to destinations around the world. Our mission is to make your travel experiences unforgettable with personalized service, incredible deals, and seamless booking options. Whether you're planning a relaxing getaway or an adventurous journey, we're here to help you every step of the way.
@@ -101,12 +102,10 @@ class Router {
         </div>
       </section>
     </div></div>`;
-  }
-  
-  function ContactUsPageHandler(state) {
-    document.getElementById(
-      "app"
-    ).innerHTML = `<div class='contactus' >
+}
+
+function ContactUsPageHandler(state) {
+  document.getElementById("app").innerHTML = `<div class='contactus' >
     <h1>Contact Us</h1><form>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
@@ -119,32 +118,31 @@ class Router {
   
         <button type="submit">Submit</button>
       </form></div>`;
-  }
-  
-  const router = new Router();
-  router.addRoute("/", HomePageHandler);
-  router.addRoute("/about", AboutPageHandler);
-  router.addRoute("/contact", ContactUsPageHandler);
-  
-  //initial route
+}
+
+const router = new Router();
+router.addRoute("/", HomePageHandler);
+router.addRoute("/about", AboutPageHandler);
+router.addRoute("/contact", ContactUsPageHandler);
+
+//initial route
+router.navigate("/");
+
+document.getElementById("logo").addEventListener("click", () => {
   router.navigate("/");
-  
-  document.getElementById("logo").addEventListener("click", () => {
-    router.navigate("/");
-  });
-  
-  document.getElementById("home").addEventListener("click", () => {
-    router.navigate("/");
-  });
-  
-  document.getElementById("aboutus").addEventListener("click", () => {
-    router.navigate("/about");
-  });
-  
-  document.getElementById("contactus").addEventListener("click", () => {
-    router.navigate("/contact");
-  });
-  
+});
+
+document.getElementById("home").addEventListener("click", () => {
+  router.navigate("/");
+});
+
+document.getElementById("aboutus").addEventListener("click", () => {
+  router.navigate("/about");
+});
+
+document.getElementById("contactus").addEventListener("click", () => {
+  router.navigate("/contact");
+});
 
 /** available keyWords for filtering */
 const keyWordMapping = {
@@ -165,8 +163,10 @@ const availablePages = {
 /** get initial tarvel details */
 const getTravelDetails = async () => {
   try {
-     const path = window.location.pathname.includes('travelRecommendation') ? 'travelRecommendation/': ''
-    const response = await fetch(path+RECOMMEDDATION_API);
+    const path = window.location.pathname.includes("travelRecommendation")
+      ? "travelRecommendation"
+      : "";
+    const response = await fetch(path + RECOMMEDDATION_API);
     if (response) {
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
@@ -189,19 +189,19 @@ const filterTravelDetails = (filterQuery) => {
 
   const name = keyWordSearch || filterName;
   if (name) {
-    if(travleDetails[name]){
-        return travleDetails[name]
+    if (travleDetails[name]) {
+      return travleDetails[name];
     }
     return Object.values(travleDetails)
       .flat()
       .reduce((acc, details) => {
         const trimmedName = name.trim().toLowerCase();
         if (details?.name?.toLowerCase() === trimmedName) {
-            const values = details['cities'] ? details['cities'] : [details]
+          const values = details["cities"] ? details["cities"] : [details];
           acc.push(...values);
         }
 
-        const cities = details['cities'];
+        const cities = details["cities"];
         if (cities?.length > 0) {
           const validCity = cities.find(
             (city) => city?.name?.toLowerCase() === trimmedName
@@ -220,7 +220,9 @@ const filterTravelDetails = (filterQuery) => {
 const filterContentRenderer = (details) => {
   const filterResponse = filterTravelDetails(details);
   const result = document.getElementById("result");
-  const path = window.location.pathname.includes('travelRecommendation') ? 'travelRecommendation/': ''
+  const path = window.location.pathname.includes("travelRecommendation")
+    ? "travelRecommendation/"
+    : "";
   if (filterResponse.length && result) {
     const template = `<div class='response'>
         <div class='imageContainer'>
@@ -230,38 +232,38 @@ const filterContentRenderer = (details) => {
             <h4>{{name}}</h4>
             <span>{{description}}</span>
         </div>
-    </div>`
+    </div>`;
 
-    let updatedResponse = ''
+    let updatedResponse = "";
     filterResponse.forEach((detail) => {
-        const { name , description , imageUrl} = detail || {}
-        let localTemp = template
-        localTemp = localTemp.replace('{{image}}',imageUrl)
-        localTemp = localTemp.replaceAll('{{name}}',name)
-        localTemp =localTemp.replaceAll('{{description}}',description)
-        updatedResponse+=localTemp
-    })
+      const { name, description, imageUrl } = detail || {};
+      let localTemp = template;
+      localTemp = localTemp.replace("{{image}}", imageUrl);
+      localTemp = localTemp.replaceAll("{{name}}", name);
+      localTemp = localTemp.replaceAll("{{description}}", description);
+      updatedResponse += localTemp;
+    });
 
-    result.innerHTML = updatedResponse
+    result.innerHTML = updatedResponse;
   } else {
-    if(!result)
-    //re-direct to home page
-    document.getElementById("logo").click();
+    if (!result)
+      //re-direct to home page
+      document.getElementById("logo").click();
 
-    result.innerHTML = 'Result not found'
+    result.innerHTML = "Result not found";
   }
 };
 
 const injectSearchListener = () => {
   document.getElementById("search_btn").addEventListener("click", async () => {
     const text = document.getElementById("search").value;
-   await filterContentRenderer({ name: text });
+    await filterContentRenderer({ name: text });
   });
 
   document.getElementById("clear_btn").addEventListener("click", () => {
     document.getElementById("search").value = "";
     const result = document.getElementById("result");
-    result.innerHTML = ''
+    result.innerHTML = "";
   });
 };
 

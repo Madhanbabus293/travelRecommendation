@@ -1,0 +1,250 @@
+body {
+  font-family: "Source Sans Pro Topnav", sans-serif;
+  margin: 0px !important;
+}
+
+h3 {
+  margin: 0px !important;
+}
+
+nav {
+  display: flex;
+  padding: 10px;
+  background-color: #282a35;
+  color: #f1f1f1;
+  max-width: 100%;
+  height: 30px;
+}
+
+nav .grid1 {
+  width: 10%;
+}
+
+nav .grid2 {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+nav .grid3 {
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+}
+
+div.route {
+  width: fit-content;
+  text-align: center;
+  cursor: pointer;
+}
+
+#logo i {
+  cursor: pointer;
+}
+
+#searchContainer {
+  background-color: white;
+  border-radius: 50px;
+  width: fit-content;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+#searchContainer input,
+#searchContainer input:active,
+#searchContainer input:focus {
+  width: 50%;
+  border: none;
+  outline: none;
+}
+
+.ionicon {
+  width: 20px;
+  color: black;
+}
+
+.search-button {
+  margin: 0px 5px;
+  border-radius: 10px;
+  background-color: rgba(71, 71, 242, 0.5);
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#app {
+  height: calc(100vh - 50px);
+  background-image: url("./assets/bgImage.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  gap: 20px;
+}
+
+#result {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-gap: 10px;
+}
+
+.response {
+  background-color: white;
+  border-radius: 10px;
+  width: 350px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  height: 60%;
+}
+
+.response img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.overview {
+  width: 450px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.overview button {
+  margin: 0px 5px;
+  border-radius: 10px;
+  background-color: rgba(71, 71, 242, 0.5);
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.contactus,
+.aboutpage {
+  width: 40%;
+}
+
+.contactus .form-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.contactus h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contactus form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactus label {
+  margin: 10px 0 5px;
+}
+
+.contactus input,
+.contactus textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.contactus textarea {
+  resize: vertical;
+}
+
+.contactus button {
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff; /* Blue color */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contactus button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.company-desc p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.8;
+  margin-top: 10px;
+}
+
+.our-team {
+  margin-top: 40px;
+}
+
+.team-members {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.team-member {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 30%;
+  text-align: center;
+}
+
+.team-member img {
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.team-member h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.role {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff; /* Blue button-like color */
+  margin-bottom: 10px;
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.role-desc {
+  font-size: 16px;
+  color: #555;
+  margin-top: 10px;
+  line-height: 1.6;
+  text-overflow: ellipsis;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}

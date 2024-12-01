@@ -56,6 +56,7 @@ A dream destination is a serene paradise offering breathtaking landscapes, vibra
 }
 
 function AboutPageHandler(state) {
+     const path = window.location.pathname.includes('travelRecommendation') ? 'travelRecommendation/': ''
   document.getElementById(
     "app"
   ).innerHTML = `<div class='aboutpage'><h1>About Page</h1> <section class="company-desc">
@@ -69,7 +70,7 @@ function AboutPageHandler(state) {
       <h2>Our Team</h2>
       <div class="team-members">
         <div class="team-member">
-          <img src="assets/member.png" alt="Team Member 1">
+          <img src="${path}assets/member.png" alt="Team Member 1">
           <h3>John Doe</h3>
           <p class="role">Founder & CEO</p>
           <p class="role-desc">
@@ -77,7 +78,7 @@ function AboutPageHandler(state) {
           </p>
         </div>
         <div class="team-member">
-          <img src="assets/member.png" alt="Team Member 2">
+          <img src="${path}assets/member.png" alt="Team Member 2">
           <h3>Jane Smith</h3>
           <p class="role">Marketing Director</p>
           <p class="role-desc">
@@ -85,7 +86,7 @@ function AboutPageHandler(state) {
           </p>
         </div>
         <div class="team-member">
-          <img src="assets/member.png" alt="Team Member 3">
+          <img src="${path}assets/member.png" alt="Team Member 3">
           <h3>David Lee</h3>
           <p class="role">Customer Support Manager</p>
           <p class="role-desc">

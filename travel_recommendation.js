@@ -1,5 +1,5 @@
 const RECOMMEDDATION_API =
-  "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMSkillsNetwork-JS0101EN-SkillsNetwork/travel1.json";
+  "/travel_recommendation_api.json";
 
 let travleDetails = {};
 
@@ -45,6 +45,9 @@ const filterTravelDetails = (filterQuery) => {
 
   const name = keyWordSearch || filterName;
   if (name) {
+    if(travleDetails[name]){
+        return travleDetails[name]
+    }
     return Object.values(travleDetails)
       .flat()
       .reduce((acc, details) => {
@@ -73,10 +76,11 @@ const filterTravelDetails = (filterQuery) => {
 const filterContentRenderer = (details) => {
   const filterResponse = filterTravelDetails(details);
   const result = document.getElementById("result");
+  const path = window.location.pathname.includes('travelRecommendation') ? 'travelRecommendation/': ''
   if (filterResponse.length && result) {
     const template = `<div class='response'>
         <div class='imageContainer'>
-        <img src="assets/{{image}}" alt={{name}}>
+        <img src="${path}assets/{{image}}" alt={{name}}>
         </div>
         <div class='textContainer'>
             <h4>{{name}}</h4>
